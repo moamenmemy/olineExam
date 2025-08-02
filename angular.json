@@ -33,8 +33,11 @@
             ],
             "styles": [
               "src/styles.scss"
+               
             ],
-            "scripts": [],
+            "scripts": [
+             
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -102,6 +105,42 @@
           }
         }
       }
+    },
+    "auth": {
+      "projectType": "library",
+      "root": "projects/auth",
+      "sourceRoot": "projects/auth/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/auth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/auth/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": "de59dbaf-6379-4331-871a-b7e62968ec95"
   }
 }
