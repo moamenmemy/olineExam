@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Adaptor } from '../adaptor';
+import { Adaptor } from '../src/lib/enums/inteface/adaptor';
+
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FlowbiteService } from './core/srvices/flowbite.service';
+
 
 @Component({
   selector: 'app-root',
