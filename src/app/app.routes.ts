@@ -2,9 +2,9 @@ import { Routes } from '@angular/router';
 
 
 export const routes: Routes = [
-
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
     {path:"auth",loadComponent:()=>import('./core/layout/auth-lay-out/auth-lay-out.component').then(c=>c.AuthLayOutComponent),children:[
-        
+      
         {path:"login",loadComponent:()=>import('./core/pages/login/login.component').then(c=>c.LoginComponent)},
         {path:"register",loadComponent:()=>import('./core/pages/register/register.component').then(c=>c.RegisterComponent)},
         {path:"forget",loadComponent:()=>import('./core/pages/forget-password/forget-password.component').then(c=>c.ForgetPasswordComponent)},

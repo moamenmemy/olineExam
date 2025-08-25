@@ -6,18 +6,21 @@ import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModu
 import { AuthService } from 'auth';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { appPatterns } from '../../../shared/constants/pattern';
+import { confirmPassword } from '../../../shared/validators/passwordValidators';
+
 
 
 
 
 @Component({
   selector: 'app-register',
-  imports:  [FormsModule,ReactiveFormsModule,NgClass,RouterLink],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, RouterLink, ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-[x: string]: any;
+
 
 _router=inject (Router)
 errmsg:string=''
@@ -29,10 +32,10 @@ errmsg:string=''
     firstName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     lastName:new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
     email:new FormControl('',[Validators.required,Validators.email]),
-    password:new FormControl('',[Validators.required,Validators.pattern(  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+    password:new FormControl('',[Validators.required,Validators.pattern(appPatterns.password )]),
     rePassword:new FormControl('',[Validators.required]),
-    phone:new FormControl('',[Validators.required,Validators.pattern(/^01[0125][0-9]{8}$/)])
-  },this.confirmPassword)
+    phone:new FormControl('',[Validators.required,Validators.pattern(appPatterns.phone)])
+  },confirmPassword)
 
 _authService=inject(AuthService)
 
@@ -54,16 +57,16 @@ _authService=inject(AuthService)
   }
 
 
-  confirmPassword(group:AbstractControl){
-    const password =group.get('password')?.value
-    const rePassword =group.get('rePassword')?.value
+  // confirmPassword(group:AbstractControl){
+  //   const password =group.get('password')?.value
+  //   const rePassword =group.get('rePassword')?.value
 
 
-    if(password===rePassword){
-      return null
-    }else{
-      return{mismatch:true}
-    }
-  }
+  //   if(password===rePassword){
+  //     return null
+  //   }else{
+  //     return{mismatch:true}
+  //   }
+  // }
 
 }

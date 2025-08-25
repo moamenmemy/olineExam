@@ -4,6 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from 'auth';
 
+import { appPatterns } from '../../../shared/constants/pattern';
+
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule,FormsModule,RouterLink],
@@ -21,7 +23,7 @@ _Router=inject(Router)
   loginform :FormGroup =new FormGroup({
    
     email:new FormControl('',[Validators.required,Validators.email]),
-    password:new FormControl('',[Validators.required,Validators.pattern(  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+    password:new FormControl('',[Validators.required,Validators.pattern( appPatterns.password)]),
     
   })
 
