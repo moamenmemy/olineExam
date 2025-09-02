@@ -8,5 +8,5 @@ export class AuthEndPoint {
     static GETLOGGEDINFO =`https://exam.elevateegy.com/api/v1/auth/profileData`
     static FORFOTPASSWORD =`https://exam.elevateegy.com/api/v1/auth/forgotPassword`
     static VERIFY =`https://exam.elevateegy.com/api/v1/auth/verifyResetCode`
-    static RESET =`https://exam.elevateegy.com/api/v1/auth/resetPassword `
+    static RESET =`https://exam.elevateegy.com/api/v1/auth/resetPassword`
 }

@@ -12,7 +12,7 @@ export class AuthAPIadaptorService implements Adaptor{
   adapt(data:any){
     return{
        message:data.message,
-       Token:data.Token,
+       Token:data.token,
        email:data.user.email
 
     }
