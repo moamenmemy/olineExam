@@ -4,6 +4,8 @@ import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, A
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'auth';
 import { confirmPassword } from '../../../shared/validators/passwordValidators';
+import { appPatterns } from '../../../shared/constants/pattern';
+import { StorageService } from '../../srvices/storage.service';
 
 
 @Component({
@@ -13,15 +15,18 @@ import { confirmPassword } from '../../../shared/validators/passwordValidators';
   styleUrl: './forget-password.component.scss'
 })
 export class ForgetPasswordComponent {
-  [x: string]: any;
+  
 
 errmsg:string=''
 
   steps:number=1;
-
+email:string=''
 
   sendEmail:FormGroup= new FormGroup({
      email: new FormControl('',[Validators.required,Validators.email])
+
+
+
   })
 
 
@@ -30,8 +35,8 @@ errmsg:string=''
   })
 
   resetPassword:FormGroup =new FormGroup({
-    email:new FormControl('',[Validators.required,Validators.email]),
-    newPassword: new FormControl('',[Validators.required,Validators.pattern(  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)]),
+    
+    newPassword: new FormControl('',[Validators.required,Validators.pattern(appPatterns.password)]),
       rePassword:new FormControl('',[Validators.required]),
   },confirmPassword)
 
@@ -49,7 +54,7 @@ errmsg:string=''
 
 
 
-
+_storageService=inject(StorageService)
 
 _authService=inject(AuthService);
 _router=inject(Router)
@@ -60,6 +65,8 @@ this._authService.forgotPassword(this.sendEmail.value).subscribe({
     console.log(res)
     if(res.message=='success'){
       this.steps=2;
+      this.email=this.sendEmail.get('email')?.value
+      console.log(this.email)
     }
   },error:(err)=>{
     console.log(err)
@@ -96,7 +103,7 @@ submitPassword(){
 
   if(this.resetPassword.valid){
     const payload = {
-        email: this.resetPassword.get('email')?.value,
+        email: this.email,
         newPassword: this.resetPassword.get('newPassword')?.value
       };
 
@@ -108,6 +115,7 @@ submitPassword(){
     next:(res)=>{
       console.log(res)
       if(res.message == "success"){
+this._storageService.setItem('userData', res.token)
          this._router.navigate(['/home'])
       }
       
