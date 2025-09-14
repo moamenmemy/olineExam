@@ -1,12 +1,14 @@
+import { baseUrl } from "../baseUrl/baseUrl"
+
 export class AuthEndPoint {
-    static LOGIN =`https://exam.elevateegy.com/api/v1/auth/signin`
-    static SIGNUP =`https://exam.elevateegy.com/api/v1/auth/signup`
-    static CHANGEPASSWORD =`https://exam.elevateegy.com/api/v1/auth/changePassword`
-    static DELETEACCOUNt =`https://exam.elevateegy.com/api/v1/auth/deleteMe`
-    static EDITPROFILE =`https://exam.elevateegy.com/api/v1/auth/editProfile`
-    static LOGOUT =`https://exam.elevateegy.com/api/v1/auth/logout`
-    static GETLOGGEDINFO =`https://exam.elevateegy.com/api/v1/auth/profileData`
-    static FORFOTPASSWORD =`https://exam.elevateegy.com/api/v1/auth/forgotPassword`
-    static VERIFY =`https://exam.elevateegy.com/api/v1/auth/verifyResetCode`
-    static RESET =`https://exam.elevateegy.com/api/v1/auth/resetPassword`
+    static LOGIN =`${baseUrl.baseUrl}/signin`
+    static SIGNUP =`${baseUrl.baseUrl}/signup`
+    static CHANGEPASSWORD =`${baseUrl.baseUrl}/changePassword`
+    static DELETEACCOUNt =`${baseUrl.baseUrl}/deleteMe`
+    static EDITPROFILE =`${baseUrl.baseUrl}/editProfile`
+    static LOGOUT =`${baseUrl.baseUrl}/logout`
+    static GETLOGGEDINFO =`${baseUrl.baseUrl}/profileData`
+    static FORFOTPASSWORD =`${baseUrl.baseUrl}/forgotPassword`
+    static VERIFY =`${baseUrl.baseUrl}/verifyResetCode`
+    static RESET =`${baseUrl.baseUrl}/resetPassword`
 }
