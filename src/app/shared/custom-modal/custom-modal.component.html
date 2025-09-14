@@ -1,0 +1,101 @@
+<p-dialog 
+    header="Start Exam" 
+    [modal]="true" 
+    
+    [style]="{ width: '50rem' }" 
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" 
+    [maximizable]="true"
+      [closable]="true" 
+      [(visible)]="isDialogVisible"
+  (onHide)="closeExamModal()">
+ <ng-content>
+  
+   @switch ((ExamStatus$ |async)) {
+    
+    @case ('started') {
+      
+<!-- numofQUestions -->
+        <div class="flex justify-start items-center gap-2 mb-6">
+    <span 
+    
+     
+    
+      class="">{{ (currentQuestion?.index ?? 0) + 1 }} of <span>{{numOfQuestion}}</span>
+    </span>
+  </div>
+
+  <!-- exam progress -->
+<div class="flex justify-start items-center">
+@for (item of getPorgressArray(); track $index) {
+
+  @if($index<= (currentQuestion?.index ?? 0) ){
+  <div class="w-[10px] h-[10px] m-[8px] bg-[#2563eb] rounded-full"></div>
+
+  }@else {
+  <div class="w-[10px] h-[10px] m-[8px] bg-[#d9d9d9] rounded-full"></div>
+  }
+}
+</div>
+
+
+  <!-- question-->
+
+ <div class=" mx-auto mt-10 p-6 bg-white ">
+
+
+  <div class="mb-6">
+    <h2 class="text-2xl font-semibold text-gray-800">{{ currentQuestion?.question }}</h2>
+  </div>
+
+  <!-- currentQuestion -->
+  <div class="flex flex-col gap-4 mb-6 ">
+    @for (answer of currentQuestion?.answers; track $index) { 
+ <label  class="flex items-center gap-3 cursor-pointer bg-gray-200 p-4 rounded-xl">
+      <input 
+      (change)="onSelectAnswer()"
+        type="radio" 
+        [name]="'answer_' + currentQuestion?._id" 
+        [value]="answer.key" 
+        [(ngModel)]="selectedAnswer"
+        class="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500">
+      <span class="text-gray-800">{{ answer.answer}}</span>
+    </label>
+    }
+   
+  </div>
+
+  
+  <div class="flex justify-between">
+    <button 
+     [disabled]="isBackBtnDisabled"
+     (click)="onBack()"
+      [class]="'px-4 py-1 rounded-md text-white font-semibold rounded-2xl shadow transition duration-200  ' + (isBackBtnDisabled ? 'bg-gray-400 text-gray-500 cursor-not-allowed opacity-50':'bg-orange-500 hover:bg-orange-600 text-white cursor-pointer') ">
+     BACK
+    </button>
+
+    <button 
+  [disabled]="isNextBtnDisabled"
+     (click)="onNext()"
+      [class]="'px-4 py-1 rounded-md text-white font-semibold rounded-2xl shadow transition duration-200  ' + (isNextBtnDisabled ? 'bg-gray-400 text-gray-500 cursor-not-allowed opacity-50'
+      : 'bg-blue-500 hover:bg-blue-600 text-white cursor-pointer')
+             
+            ">
+      NEXT
+    </button>
+  </div>
+
+</div>
+
+
+   
+   }  @case('notstarted')
+ {
+  
+  <app-exam-score></app-exam-score>
+ } @case('show Report'){
+  <app-show-resul-ts></app-show-resul-ts>
+ }
+
+   }
+ </ng-content>
+</p-dialog>

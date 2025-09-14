@@ -1,14 +1,14 @@
 import { baseUrl } from "../baseUrl/baseUrl"
 
 export class AuthEndPoint {
-    static LOGIN =`${baseUrl.baseUrl}/signin`
-    static SIGNUP =`${baseUrl.baseUrl}/signup`
-    static CHANGEPASSWORD =`${baseUrl.baseUrl}/changePassword`
-    static DELETEACCOUNt =`${baseUrl.baseUrl}/deleteMe`
-    static EDITPROFILE =`${baseUrl.baseUrl}/editProfile`
-    static LOGOUT =`${baseUrl.baseUrl}/logout`
-    static GETLOGGEDINFO =`${baseUrl.baseUrl}/profileData`
-    static FORFOTPASSWORD =`${baseUrl.baseUrl}/forgotPassword`
-    static VERIFY =`${baseUrl.baseUrl}/verifyResetCode`
-    static RESET =`${baseUrl.baseUrl}/resetPassword`
+    static LOGIN =`${baseUrl.baseUrl}/auth/signin`
+    static SIGNUP =`${baseUrl.baseUrl}/auth/signup`
+    static CHANGEPASSWORD =`${baseUrl.baseUrl}/auth/changePassword`
+    static DELETEACCOUNt =`${baseUrl.baseUrl}/auth/deleteMe`
+    static EDITPROFILE =`${baseUrl.baseUrl}/auth/editProfile`
+    static LOGOUT =`${baseUrl.baseUrl}/auth/logout`
+    static GETLOGGEDINFO =`${baseUrl.baseUrl}/auth/profileData`
+    static FORFOTPASSWORD =`${baseUrl.baseUrl}/auth/forgotPassword`
+    static VERIFY =`${baseUrl.baseUrl}/auth/verifyResetCode`
+    static RESET =`${baseUrl.baseUrl}/auth/resetPassword`
 }

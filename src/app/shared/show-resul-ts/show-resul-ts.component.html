@@ -1,0 +1,13 @@
+<div *ngFor="let q of wrongQuestions$ | async; let i = index" class="mb-6 p-4 border rounded">
+  <h3 class="font-semibold text-lg">{{ i + 1 }}. {{ q.question }}</h3>
+
+  <ul class="ml-4 list-disc">
+    <li *ngFor="let a of q.answers">
+      <span [class.font-bold]="a.key === q.correct || a.key === q.selectedAnswer">
+        {{ a.answer }}
+        <span *ngIf="a.key === q.correct" class="text-green-500">(Correct)</span>
+        <span *ngIf="a.key === q.selectedAnswer && a.key !== q.correct" class="text-red-500">(Your Answer)</span>
+      </span>
+    </li>
+  </ul>
+</div>

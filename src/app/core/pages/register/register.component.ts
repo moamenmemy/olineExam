@@ -1,5 +1,5 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
@@ -8,7 +8,7 @@ import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { appPatterns } from '../../../shared/constants/pattern';
 import { confirmPassword } from '../../../shared/validators/passwordValidators';
-
+import { Subject as RxSubject, takeUntil } from 'rxjs';
 
 
 
@@ -19,9 +19,9 @@ import { confirmPassword } from '../../../shared/validators/passwordValidators';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnDestroy {
 
-
+private destroy$ = new RxSubject<void>();
 _router=inject (Router)
 errmsg:string=''
 
@@ -41,7 +41,7 @@ _authService=inject(AuthService)
 
   submit(){
    console.log(this.registerform.value)
-   this._authService.register(this.registerform.value).subscribe({
+   this._authService.register(this.registerform.value).pipe(takeUntil(this.destroy$)).subscribe({
     next:(res)=>{
       
       if(res.message=="success"){
@@ -56,17 +56,10 @@ _authService=inject(AuthService)
     
   }
 
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete()
+}
 
-  // confirmPassword(group:AbstractControl){
-  //   const password =group.get('password')?.value
-  //   const rePassword =group.get('rePassword')?.value
-
-
-  //   if(password===rePassword){
-  //     return null
-  //   }else{
-  //     return{mismatch:true}
-  //   }
-  // }
 
 }
