@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import * as QuestionSelectors from '../question/question.selectors'
 import { Dialog } from 'primeng/dialog';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import * as QuestionAction from'../question/question.actions'
 import { ExamScoreComponent } from "../exam-score/exam-score.component";
 import { ShowResulTsComponent } from "../show-resul-ts/show-resul-ts.component";
+import { Subject as RxSubject, takeUntil } from 'rxjs';
 
 
 
@@ -22,7 +23,7 @@ import { ShowResulTsComponent } from "../show-resul-ts/show-resul-ts.component";
   templateUrl: './custom-modal.component.html',
   styleUrl: './custom-modal.component.scss'
 })
-export class CustomModalComponent implements OnInit {
+export class CustomModalComponent implements OnInit,OnDestroy {
   private readonly _store = inject(Store);
   ModalStatus$!: Observable<modalstatus>;
   ExamStatus$!: Observable<examstatus>;
@@ -34,12 +35,13 @@ selectedAnswer:string=''
 numOfQuestion= 0;
   isDialogVisible:boolean=false
 
+private destroy$ = new RxSubject<void>();
 
 
 
   getModalStatus(){
         this.ModalStatus$ = this._store.select(ModalSelectors.selectModalStatus);
-          this._store.select(ModalSelectors.selectModalStatus).subscribe({
+          this._store.select(ModalSelectors.selectModalStatus).pipe(takeUntil(this.destroy$)).subscribe({
             next:()=>{
               this.isDialogVisible=true
             }
@@ -154,7 +156,10 @@ showReport(){
 
 
 
-
+ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
 
   ngOnInit(): void {
     this.getCurrenQuestion()

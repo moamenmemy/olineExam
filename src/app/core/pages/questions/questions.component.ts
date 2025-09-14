@@ -32,7 +32,7 @@ questions: any[] = [];
 
   ModalStatus$! :Observable<modalstatus>
   ngOnInit() {
-   this.route.paramMap.subscribe(params => {
+   this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
       this.subjectId = params.get('id')!;
       console.log('Subject ID:', this.subjectId);
 
