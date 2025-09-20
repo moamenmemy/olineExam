@@ -10,6 +10,8 @@ import * as ModalActions from '../../../shared/modal/modal.actions'
 import { AsyncPipe } from '@angular/common';
 import { CustomModalComponent } from "../../../shared/custom-modal/custom-modal.component";
 import * as QuestionSelectors from '../../../shared/question/question.selectors'
+import { Question, QuestionAdapt } from '../../../shared/interFace/question';
+import { Exam } from '../../../shared/interFace/allExams/exams';
 
 @Component({
   selector: 'app-questions',
@@ -22,9 +24,9 @@ export class QuestionsComponent implements OnInit,OnDestroy {
 private destroy$ = new RxSubject<void>();
 
     subjectId!: string;
-questions: any[] = [];
+exams: Exam[] = [];
 
- questions$!: Observable<any[]>; 
+ questions$!: Observable<QuestionAdapt[]>; 
   constructor(private route: ActivatedRoute,private examService:ExamOnSubjectService) {}
 
   private readonly _store =inject(Store)
@@ -36,7 +38,7 @@ questions: any[] = [];
       this.subjectId = params.get('id')!;
       console.log('Subject ID:', this.subjectId);
 
-console.log(this.questions)
+console.log(this.exams)
  this.getExamOnSubject()
   });
 
@@ -52,7 +54,7 @@ this.questions$ = this._store.select(QuestionSelectors.selectQuestions);
   this.examService.examOnSubject(this.subjectId).pipe(takeUntil(this.destroy$)).subscribe({
     next:(res)=>{
       console.log(res.exams)
-      this.questions=res.exams
+      this.exams=res.exams
     },error:(err)=>{
       console.log(err)
     }

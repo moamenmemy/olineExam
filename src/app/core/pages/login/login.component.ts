@@ -34,8 +34,8 @@ _storageService=inject(StorageService)
       next:(res)=>{
        if(res.message=='success'){
         this._Router.navigate(['/home'])
-
-       this._storageService.setItem('userData', res.Token)
+console.log('Login API Response:', res);
+       this._storageService.setItem('userData', res.token)
        }
         console.log(res)
       },error:(err)=>{

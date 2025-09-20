@@ -1,13 +1,29 @@
-<div *ngFor="let q of wrongQuestions$ | async; let i = index" class="mb-6 p-4 border rounded">
-  <h3 class="font-semibold text-lg">{{ i + 1 }}. {{ q.question }}</h3>
 
-  <ul class="ml-4 list-disc">
-    <li *ngFor="let a of q.answers">
-      <span [class.font-bold]="a.key === q.correct || a.key === q.selectedAnswer">
-        {{ a.answer }}
-        <span *ngIf="a.key === q.correct" class="text-green-500">(Correct)</span>
-        <span *ngIf="a.key === q.selectedAnswer && a.key !== q.correct" class="text-red-500">(Your Answer)</span>
-      </span>
-    </li>
-  </ul>
+ <div class="  p-6 border rounded shadow-md bg-white">
+@for (item of wrongQuestions$ |async; track $index) {
+     <div class="bg-gray-200 p-4 mb-4 rounded shadow-sm">
+  <h3 class="font-semibold text-lg mb-2">
+      {{ item.index + 1 }}. {{ item.question }}
+    </h3>
+     <ul class="ml-4 list-disc">
+
+  @for (a of item.answers; track $index) {
+    <li class="mb-1">
+<span [class.font-bold]="a.key === item.correct || a.key === item.selectedAnswer">
+  {{ a.answer }}
+  @if(a.key===item.correct){
+    <span class="text-green-500">(Correct)</span>
+  }@else if (a.key===item.selectedAnswer && a.key !==item.correct) {
+      <span class="text-red-500">(Your Answer)</span>
+  }
+</span>
+ </li>
+  }
+ 
+ </ul>
 </div>
+}
+
+</div> 
+
+

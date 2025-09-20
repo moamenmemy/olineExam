@@ -49,7 +49,7 @@ private destroy$ = new RxSubject<void>();
   }
   getExamStatus(){
         this.ExamStatus$ = this._store.select(ModalSelectors.selectExamlStatus);
-          this._store.select(ModalSelectors.selectExamlStatus).subscribe({
+          this._store.select(ModalSelectors.selectExamlStatus).pipe(takeUntil(this.destroy$)).subscribe({
             next:(val)=>{
                 console.log(val);
             }
@@ -151,7 +151,7 @@ showReport(){
   
   this._store.dispatch(QuestionAction.filterWrongAnswers())
   
-  this._store.dispatch(ModalActions.setExamlStatus({examStatus:'notstarted'}));  
+  this._store.dispatch(ModalActions.setExamlStatus({examStatus:'show Summary'}));  
 }
 
 

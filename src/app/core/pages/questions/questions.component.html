@@ -37,7 +37,7 @@
         <!--^ question  -->
 <div class="conector w-[80%] my-12 mx-auto bg-white flex justify-between items-center py-12 px-4">
 
-@for (item of questions; track $index) {
+@for (item of exams; track $index) {
 <div class="flex justify-center items-center  gap-8 ">
 @if (item.title=== "HTML Quiz") {
     <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,13 @@
 </div>
 } @empty {
  
-  <div class="text-center w-full py-12">
+  <div class="flex justify-between items-center w-full py-12 px-6 ">
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35 0L0 11.62L5.33835 54.705L35 70L64.6617 54.705L70 11.62L35 0Z" fill="#DD0031"/>
+<path d="M34.3355 10.625L16.5117 50.5906H23.1573L26.7405 41.6481H41.8692L45.4523 50.5906H52.098L34.3355 10.625ZM39.5417 36.1356H29.1292L34.3355 23.61L39.5417 36.1356Z" fill="white"/>
+</svg>
+
+
     <p class="text-gray-500 text-lg font-semibold"> There are no questions available at this time.</p>
   </div>
 }

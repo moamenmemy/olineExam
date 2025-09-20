@@ -34,6 +34,7 @@ export interface Exam {
   numberOfQuestions: number;
   active: boolean;
   createdAt: Date;
+    icon?: string;
 }
 
 export enum Type {

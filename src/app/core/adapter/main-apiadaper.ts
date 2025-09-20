@@ -13,7 +13,7 @@ export class MainAPIAdaperService implements Adapter {
       index: index,
       question: q.question,
       correct: q.correct,
-      selectedAnswer: undefined
+     
     }));
   }
 }
