@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { ReactiveFormsModule, FormsModule, FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'auth';
 import { confirmPassword } from '../../../shared/validators/passwordValidators';
 import { appPatterns } from '../../../shared/constants/pattern';
 import { StorageService } from '../../srvices/storage.service';
+import { Subject as RxSubject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -14,8 +15,10 @@ import { StorageService } from '../../srvices/storage.service';
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.scss'
 })
-export class ForgetPasswordComponent {
+export class ForgetPasswordComponent implements OnDestroy {
   
+  private destroy$ = new RxSubject<void>();
+
 
 errmsg:string=''
 
@@ -60,7 +63,7 @@ _authService=inject(AuthService);
 _router=inject(Router)
 
 submitEmail(){
-this._authService.forgotPassword(this.sendEmail.value).subscribe({
+this._authService.forgotPassword(this.sendEmail.value).pipe(takeUntil(this.destroy$)).subscribe({
   next:(res)=>{
     console.log(res)
     if(res.message=='success'){
@@ -79,7 +82,7 @@ this._authService.forgotPassword(this.sendEmail.value).subscribe({
 
 submitCode(){
 
-this._authService.verifyResetCode(this.verifyCode.value).subscribe({
+this._authService.verifyResetCode(this.verifyCode.value).pipe(takeUntil(this.destroy$)).subscribe({
 
 
   next:(res)=>{
@@ -109,7 +112,7 @@ submitPassword(){
 
 
 
-  this._authService.resetPassword(payload).subscribe({
+  this._authService.resetPassword(payload).pipe(takeUntil(this.destroy$)).subscribe({
 
 
     next:(res)=>{
@@ -127,5 +130,10 @@ console.log(err)
 }
 
   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 
 }

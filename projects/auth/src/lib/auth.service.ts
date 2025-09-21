@@ -6,10 +6,10 @@ import { AuthAPIadaptorService } from './enums/adaptor/auth-api.adaptor';
 import { authApi } from './base/authApi';
 import { SinUp } from './interface/sin-up';
 import { Auth } from './interface/auth';
-import { SinIn } from './interface/sin-in';
+import { AuthModel, SinIn } from './interface/sin-in';
 import { ForgotPassword } from './interface/forgot-password';
 import { VerifyResetCode } from './interface/verify-reset-code';
-import { ResetPassword } from './interface/reset-password';
+import { logOut, ResetPassword } from './interface/reset-password';
 
 
 @Injectable({
@@ -23,13 +23,9 @@ _authAPIadaptorService=inject(AuthAPIadaptorService)
 
   constructor() { }
 
-   login(data:Auth): Observable<SinIn> {
-    return this._httpClient.post(AuthEndPoint.LOGIN,data)
-    .pipe(map(res=>this._authAPIadaptorService.adapt(res)),
-  catchError(err=>of(err))
-  
-  )
-  }
+login(data: Auth): Observable<SinIn> {
+  return this._httpClient.post<SinIn>(AuthEndPoint.LOGIN, data);
+}
 
  register(data:Auth): Observable<SinUp> {
   return this._httpClient.post<SinUp>(AuthEndPoint.SIGNUP,data)
@@ -42,6 +38,10 @@ _authAPIadaptorService=inject(AuthAPIadaptorService)
 }
  resetPassword(data:Auth): Observable<ResetPassword> {
    return this._httpClient.put<ResetPassword>(AuthEndPoint.RESET,data)
+}
+ logOut(): Observable<logOut> {
+  return this._httpClient.get<logOut>(AuthEndPoint.LOGOUT)
+  
 }
 }
 

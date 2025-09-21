@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Subjects } from '../../shared/interFace/subjects/subjects';
+import { baseUrl } from '../../../../projects/auth/src/lib/baseUrl/baseUrl';
+import { BASe_Toke } from '../../shared/token/app.token';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +12,9 @@ export class AllSubjectsService {
 
  constructor(private http:HttpClient) { }
 
+  private readonly _baseUrl = inject(BASe_Toke);
 
- allSubjects():Observable<any>{
-  return this.http.get(`https://exam.elevateegy.com/api/v1/subjects`,
-    {
-      headers:{token:localStorage.getItem('userData')||''}
-    }
-  )
+ allSubjects():Observable<Subjects>{
+  return this.http.get<Subjects>(`${this._baseUrl}/subjects`)
  }
 }

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { StorageService } from '../../srvices/storage.service';
+import { AuthService } from 'auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,5 +10,26 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
+_authService =inject(AuthService)
+_storageService=inject(StorageService)
+_Router=inject(Router)
+
+  logOut(){
+
+    this._authService.logOut().subscribe({
+      next:(res)=>{
+
+        if(res.message=='success'){
+this._storageService.removeItem('userData')
+this._Router.navigate(['auth/login'])
+
+        }
+      }
+      
+    })
+
+
+
+  }
 
 }

@@ -1,4 +1,5 @@
 export interface Subjects {
+  exams: any[];
       message:  string;
     metadata: Metadata;
     subjects: Subject[];
@@ -11,6 +12,7 @@ export interface Metadata {
 }
 
 export interface Subject {
+[x: string]: any;
     _id:       string;
     name:      string;
     icon:      string;

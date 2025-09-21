@@ -1,0 +1,30 @@
+ <div class="flex  items-center gap-6 ">
+
+<div class="card flex justify-center w-full">
+    <p-chart type="doughnut" [data]="data" class="w-[50%] "></p-chart>
+  </div>
+
+
+<div class="flex gap-4">
+    <button 
+     (click)="closeModal()"
+    
+      class="px-10 py-1  rounded-md text-white font-semibold rounded-2xl shadow transition duration-200   bg-orange-500 hover:bg-orange-600 text-white cursor-pointer ">
+      CLOSE
+    </button>
+@if(NumberOfWronQuestions > 0){
+
+
+        <button 
+  
+     (click)="showResults()"
+      class="px-4 py-1 rounded-md text-white font-semibold rounded-2xl shadow transition duration-200  bg-blue-500 hover:bg-blue-600 text-white cursor-pointer"
+             
+            >
+     SHOW RESULTS
+    </button>
+}
+
+</div>
+
+  </div>

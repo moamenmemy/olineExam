@@ -1,0 +1,118 @@
+<section id="questions" class="w-full min-h-screen bg-gray-50">
+
+<div class=" flex justify-between items-center gap-10">
+          <div class=" mx-auto w-[20%]">
+        <app-dashboard></app-dashboard>
+    </div> 
+    
+
+    <div class="mx-auto  w-[80%] flex justify-center items-center flex-wrap">
+            <!--^ Search  -->
+
+ <div class="container w-[80%] my-12 mx-auto   ">
+            <form class="flex items-center justify-center  max-w-3xl mx-auto my-12">
+                <label for="simple-search" class="sr-only">Search</label>
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M21.6564 20.5516L15.7564 14.6516C17.1742 12.9495 17.8812 10.7663 17.7303 8.55617C17.5795 6.34607 16.5823 4.27921 14.9464 2.78556C13.3104 1.29191 11.1616 0.486463 8.94695 0.536785C6.73227 0.587106 4.62226 1.48932 3.05584 3.05573C1.48942 4.62215 0.587213 6.73217 0.536892 8.94684C0.48657 11.1615 1.29201 13.3103 2.78566 14.9463C4.27932 16.5822 6.34618 17.5793 8.55628 17.7302C10.7664 17.8811 12.9496 17.1741 14.6517 15.7562L20.5517 21.6562L21.6564 20.5516ZM2.12511 9.15625C2.12511 7.7656 2.53748 6.40618 3.31009 5.2499C4.08269 4.09361 5.18082 3.1924 6.46561 2.66022C7.75041 2.12804 9.16416 1.9888 10.5281 2.2601C11.892 2.5314 13.1449 3.20107 14.1282 4.1844C15.1115 5.16774 15.7812 6.42059 16.0525 7.78452C16.3238 9.14845 16.1846 10.5622 15.6524 11.847C15.1202 13.1318 14.219 14.2299 13.0627 15.0025C11.9064 15.7751 10.547 16.1875 9.15636 16.1875C7.29219 16.1854 5.50496 15.444 4.18679 14.1258C2.86863 12.8076 2.12717 11.0204 2.12511 9.15625Z"
+                                fill="#1935CA" />
+                        </svg>
+
+                    </div>
+                    <input type="text" id="simple-search"
+                        class=" border border-white text-gray-900 text-sm rounded-xl shadow-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search branch name..." required />
+                </div>
+                <button type="submit"
+                    class=" p-2 px-6 min-w-[150px] ms-5 text-sm font-medium text-white bg-blue-600 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Start Quiz
+                </button>
+                <img src="/Frame 40.png"  class=" mx-4  w-10 h-10 mx-4 rounded-full object-cover " alt="man" />
+            </form>
+        </div> 
+
+
+        <!--^ question  -->
+<div class="conector w-[80%] my-12 mx-auto bg-white flex justify-between items-center py-12 px-4">
+
+@for (item of exams; track $index) {
+<div class="flex justify-center items-center  gap-8 ">
+@if (item.title=== "HTML Quiz") {
+    <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M53.5938 0H16.4062C7.34533 0 0 7.34533 0 16.4062V53.5938C0 62.6547 7.34533 70 16.4062 70H53.5938C62.6547 70 70 62.6547 70 53.5938V16.4062C70 7.34533 62.6547 0 53.5938 0Z" fill="#E14E1D"/>
+<path d="M13.125 10.3906L15.4793 36.8028H45.7516L44.7357 48.1313L34.9888 50.7667L25.2602 48.1351L24.6096 40.8611H15.843L17.0967 54.8833L34.9869 59.8522L52.8998 54.8833L55.3014 28.0697H23.4675L22.6682 19.1256H56.0927L56.875 10.3906H13.125Z" fill="white"/>
+<path d="M35 10.3906H13.125L15.4793 36.8028H35V28.0697H23.4675L22.6682 19.1256H35V10.3906ZM35 50.7629L34.9888 50.7667L25.2602 48.1351L24.6096 40.8611H15.843L17.0967 54.8833L34.9869 59.8522L35.0003 59.8484L35 50.7629Z" fill="#EBEBEB"/>
+</svg>} @else if (item.title === "CSS Quiz"){
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M53.5938 0H16.4062C7.34533 0 0 7.34533 0 16.4062V53.5938C0 62.6547 7.34533 70 16.4062 70H53.5938C62.6547 70 70 62.6547 70 53.5938V16.4062C70 7.34533 62.6547 0 53.5938 0Z" fill="#0277BD"/>
+<path d="M14.6981 28.0686L15.4807 36.8028H35.0262V28.0686H14.6981ZM35.026 10.3906H13.125L13.9191 19.1248H35.026V10.3906ZM35.026 59.8393V50.7522L34.9877 50.7623L25.2604 48.1359L24.6386 41.1698H15.8709L17.0945 54.8838L34.9858 59.8505L35.026 59.8393Z" fill="#EBEBEB"/>
+<path d="M45.7512 36.8028L44.7373 48.1302L34.9961 50.7596V59.8462L52.9016 54.8838L53.0329 53.4081L55.0853 30.4142L55.2983 28.0686L56.8752 10.3906H34.9961V19.1248H47.3032L46.5086 28.0686H34.9961V36.8028H45.7512Z" fill="white"/>
+</svg>
+
+
+} @else if (item.title === "JavaScript Quiz"){
+    <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_67_909)">
+<path d="M53.5938 0H16.4062C7.34533 0 0 7.34533 0 16.4062V53.5938C0 62.6547 7.34533 70 16.4062 70H53.5938C62.6547 70 70 62.6547 70 53.5938V16.4062C70 7.34533 62.6547 0 53.5938 0Z" fill="#F0DB4F"/>
+<path d="M18.4055 58.497L23.7622 55.2552C24.7958 57.0875 25.7359 58.6379 27.9909 58.6379C30.1524 58.6379 31.5152 57.7924 31.5152 54.5035V32.1368H38.0936V54.5965C38.0936 61.4097 34.0998 64.511 28.2728 64.511C23.0105 64.511 19.9559 61.7857 18.4053 58.4965M41.6666 57.7921L47.0227 54.6911C48.4328 56.9937 50.2654 58.6852 53.5073 58.6852C56.2332 58.6852 57.9711 57.3223 57.9711 55.4427C57.9711 53.1874 56.1856 52.3884 53.1783 51.0732L51.5341 50.368C46.7881 48.3479 43.6397 45.8104 43.6397 40.4537C43.6397 35.5198 47.3989 31.7606 53.2727 31.7606C57.4546 31.7606 60.4619 33.2175 62.6231 37.0234L57.5014 40.3126C56.3734 38.2922 55.1523 37.4935 53.2727 37.4935C51.346 37.4935 50.1243 38.7152 50.1243 40.3126C50.1243 42.286 51.346 43.085 54.1652 44.307L55.8096 45.0116C61.4011 47.4083 64.5495 49.8512 64.5495 55.3487C64.5495 61.2697 59.8978 64.5116 53.6484 64.5116C47.54 64.5116 43.593 61.5984 41.6666 57.7921Z" fill="#323330"/>
+</g>
+<defs>
+<clipPath id="clip0_67_909">
+<rect width="70" height="70" fill="white"/>
+</clipPath>
+</defs>
+</svg>
+
+}
+
+
+
+<div>
+    <h2>{{item.title}}</h2> 
+    <p>{{item.numberOfQuestions}}  Questions</p>
+</div>
+
+
+</div>
+
+<div class="flex  flex-col text-center gap-2 ">
+
+    <p>{{item.duration}} minutes</p>
+  <button 
+  (click)="openExamModal(item._id)"
+   type="submit"
+                    class=" p-2 px-6 min-w-[150px] ms-5 text-sm font-medium text-white bg-blue-600 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Start 
+                </button>
+                
+
+</div>
+} @empty {
+ 
+  <div class="flex justify-between items-center w-full py-12 px-6 ">
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35 0L0 11.62L5.33835 54.705L35 70L64.6617 54.705L70 11.62L35 0Z" fill="#DD0031"/>
+<path d="M34.3355 10.625L16.5117 50.5906H23.1573L26.7405 41.6481H41.8692L45.4523 50.5906H52.098L34.3355 10.625ZM39.5417 36.1356H29.1292L34.3355 23.61L39.5417 36.1356Z" fill="white"/>
+</svg>
+
+
+    <p class="text-gray-500 text-lg font-semibold"> There are no questions available at this time.</p>
+  </div>
+}
+</div>
+
+
+
+@if ((ModalStatus$ | async) === 'open') {
+  <app-custom-modal></app-custom-modal>
+
+
+}
+
+
+   
+    </div>
+</div>
+</section>
