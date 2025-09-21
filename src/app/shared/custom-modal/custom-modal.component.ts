@@ -49,11 +49,8 @@ private destroy$ = new RxSubject<void>();
   }
   getExamStatus(){
         this.ExamStatus$ = this._store.select(ModalSelectors.selectExamlStatus);
-          this._store.select(ModalSelectors.selectExamlStatus).pipe(takeUntil(this.destroy$)).subscribe({
-            next:(val)=>{
-                console.log(val);
-            }
-          })
+      
+        
   }
 
   getCurrenQuestion(){

@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as QuestionSelectors from '../question/question.selectors'
 import { QuestionAdapt,  } from '../interFace/question';
-import { async, Observable } from 'rxjs';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import {  Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-show-resul-ts',
-  imports: [AsyncPipe,NgIf,NgFor],
+  imports: [AsyncPipe],
   templateUrl: './show-resul-ts.component.html',
   styleUrl: './show-resul-ts.component.scss'
 })
