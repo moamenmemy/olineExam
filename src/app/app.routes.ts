@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'home', loadComponent: () => import('./core/pages/home/home.component').then(c => c.HomeComponent) },
   {
     path: 'questions/:id',
-    data: { renderMode: 'blocking' }, // SSR ديناميكي
+  
     loadComponent: () => import('./core/pages/questions/questions.component').then(c => c.QuestionsComponent)
   }
 ];

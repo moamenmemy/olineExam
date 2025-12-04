@@ -2,6 +2,8 @@
   "name": "oline",
   "version": "0.0.0",
   "scripts": {
+  "build:ssr": "ng build --configuration production && ng run oline:server:production",
+  "serve:ssr": "node dist/oline/server/main.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
